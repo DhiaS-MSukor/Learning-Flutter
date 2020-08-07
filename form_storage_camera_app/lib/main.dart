@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'form.dart';
+import 'saved_form.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,6 +16,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      routes: {
+        '/Form': (context) => FormWidget(),
+        '/SavedForm': (context) => SavedFormWidget()
+      },
       home: MyHomePage(title: 'Form, Storage & Camera'),
     );
   }
@@ -40,12 +46,16 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             children: <Widget>[
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/Form');
+                },
                 child: Text('Form'),
               ),
               RaisedButton(
-                onPressed: () {},
-                child: Text('Cam'),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/savedForm');
+                },
+                child: Text('Saved Form'),
               ),
             ],
           ),
