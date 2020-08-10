@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  camera:
+  image_picker:
   path_provider:
   path:
 
