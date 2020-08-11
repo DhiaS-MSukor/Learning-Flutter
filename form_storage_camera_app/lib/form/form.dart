@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FormWidget extends StatefulWidget {
@@ -34,7 +35,11 @@ class _FormWidgetState extends State<FormWidget> {
                 },
                 child: _imageFile == null
                     ? Icon(Icons.image)
-                    : Image.file(File(_imageFile.path)),
+                    : Image.file(
+                        File(_imageFile.path),
+                        width: 320,
+                        height: 240,
+                      ),
               ),
               RaisedButton(onPressed: null, child: Text('Submit')),
             ],
@@ -68,7 +73,12 @@ class _FormWidgetState extends State<FormWidget> {
   }
 
   Future<void> _pickImage(ImageSource source) async {
-    final pickedFile = await _picker.getImage(source: source);
+    final pickedFile = await _picker.getImage(
+        source: source); //, maxWidth: 640, maxHeight: 480, imageQuality: 100);
+
+    if (source == ImageSource.camera) { 
+      GallerySaver.saveImage(pickedFile.path, albumName: 'KLConnectIT');
+    }
 
     setState(() {
       _imageFile = pickedFile;
