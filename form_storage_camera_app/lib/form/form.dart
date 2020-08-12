@@ -41,7 +41,14 @@ class _FormWidgetState extends State<FormWidget> {
                         height: 240,
                       ),
               ),
-              RaisedButton(onPressed: null, child: Text('Submit')),
+              RaisedButton(
+                  onPressed: () {
+                    // TODO: Submit function
+                    // post to db
+                    // pop navigator
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Submit')),
             ],
           ),
         ));
@@ -76,7 +83,7 @@ class _FormWidgetState extends State<FormWidget> {
     final pickedFile = await _picker.getImage(
         source: source); //, maxWidth: 640, maxHeight: 480, imageQuality: 100);
 
-    if (source == ImageSource.camera) { 
+    if (source == ImageSource.camera) {
       GallerySaver.saveImage(pickedFile.path, albumName: 'KLConnectIT');
     }
 
