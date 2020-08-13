@@ -44,6 +44,7 @@ class _FormWidgetState extends State<FormWidget> {
               RaisedButton(
                   onPressed: () {
                     // TODO: Submit function
+                    // open db
                     // post to db
                     // pop navigator
                     Navigator.of(context).pop();
@@ -84,7 +85,9 @@ class _FormWidgetState extends State<FormWidget> {
         source: source); //, maxWidth: 640, maxHeight: 480, imageQuality: 100);
 
     if (source == ImageSource.camera) {
-      GallerySaver.saveImage(pickedFile.path, albumName: 'KLConnectIT');
+      try {
+        GallerySaver.saveImage(pickedFile.path, albumName: 'KLConnectIT');
+      } catch (e) {}
     }
 
     setState(() {
